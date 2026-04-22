@@ -6,5 +6,8 @@ files:
   - name: tests.py
     learner_created: false
 feedback_link: https://hyperskill.org/projects/254/stages/1279/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Wed, 22 Apr 2026 14:42:12 UTC"
 record: -1

@@ -26,20 +26,40 @@ func main() {
 
 func matchSymbols(regexp, intput string) bool {
 
-	var result bool
-
 	if regexp == intput {
-		result = true
-	} else if regexp == "." && intput != "" {
-		result = true
-	} else if regexp == "" && intput != "" {
-		result = true
-	} else if regexp == "" && intput == "" {
-		result = true
-	} else {
-		result = false
+		return true
 	}
 
-	return result
+	countPoint := strings.Count(regexp, ".")
+
+	if countPoint == 1 && intput != "" {
+
+		if regexp[0] == '.' {
+			if strings.Contains(intput, regexp[1:]) {
+				return true
+			}
+		}
+
+		if regexp[len(regexp)-1] == '.' {
+			if strings.Contains(intput, regexp[:len(regexp)-1]) {
+				return true
+			}
+		}
+
+	}
+
+	if countPoint > 1 && len(regexp) == countPoint && intput != "" {
+		return true
+	}
+
+	if regexp == "" && intput != "" {
+		return true
+	}
+
+	if regexp == "" && intput == "" {
+		return true
+	}
+
+	return false
 
 }
