@@ -1,0 +1,13 @@
+type: remote_edu
+files:
+  - name: main.go
+    visible: true
+    learner_created: false
+  - name: tests.py
+    learner_created: false
+feedback_link: https://hyperskill.org/projects/254/stages/1278/implement#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Wed, 22 Apr 2026 14:04:52 UTC"
+record: -1
