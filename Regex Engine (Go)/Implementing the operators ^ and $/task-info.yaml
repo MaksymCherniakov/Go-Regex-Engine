@@ -4,7 +4,14 @@ files:
     visible: true
     learner_created: false
   - name: tests.py
+    visible: true
     learner_created: false
 feedback_link: https://hyperskill.org/projects/254/stages/1281/implement#comment
-status: Unchecked
+status: Failed
+feedback:
+  message: |-
+    Reply has invalid schema: 1 validation error for PycharmReplyModel
+      Assertion failed, Bad check profile [type=assertion_error, input_value={'version': 21, 'feedback...}], 'check_profile': ''}, input_type=dict]
+        For further information visit https://errors.pydantic.dev/2.9/v/assertion_error
+  time: "Thu, 23 Apr 2026 14:38:35 UTC"
 record: -1

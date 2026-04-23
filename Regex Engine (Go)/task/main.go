@@ -19,47 +19,62 @@ func main() {
 	regexp := parts[0]
 	intput := parts[1]
 
-	result := matchSymbols(regexp, intput)
-	Println(result)
+	if strings.HasPrefix(regexp, "^") {
+		Println(matchSymbols(regexp[1:], intput))
+	} else {
+		Println(search(regexp, intput))
+	}
 
+}
+
+func search(regexp, intput string) bool {
+
+	if matchSymbols(regexp, intput) {
+		return true
+	}
+
+	if intput != "" {
+		return search(regexp, intput[1:])
+	}
+	return false
 }
 
 func matchSymbols(regexp, intput string) bool {
 
-	if regexp == intput {
+	if regexp == "" {
+		return true
+	}
+	if regexp == "$" && intput == "" {
 		return true
 	}
 
-	countPoint := strings.Count(regexp, ".")
+	if intput == "" {
+		return false
+	}
 
-	if countPoint == 1 && intput != "" {
-
-		if regexp[0] == '.' {
-			if strings.Contains(intput, regexp[1:]) {
-				return true
-			}
+	if len(regexp) > 1 {
+		char := regexp[0]
+		op := regexp[1]
+		if op == '?' {
+			return matchSymbols(regexp[2:], intput) ||
+				(check(char, intput[0]) && matchSymbols(regexp[2:], intput[1:]))
 		}
-
-		if regexp[len(regexp)-1] == '.' {
-			if strings.Contains(intput, regexp[:len(regexp)-1]) {
-				return true
-			}
+		if op == '*' {
+			return matchSymbols(regexp[2:], intput) ||
+				(check(char, intput[0]) && matchSymbols(regexp, intput[1:]))
 		}
-
+		if op == '+' {
+			return check(char, intput[0]) &&
+				(matchSymbols(regexp[2:], intput[1:]) || matchSymbols(regexp, intput[1:]))
+		}
 	}
 
-	if countPoint > 1 && len(regexp) == countPoint && intput != "" {
-		return true
+	if check(regexp[0], intput[0]) {
+		return matchSymbols(regexp[1:], intput[1:])
 	}
-
-	if regexp == "" && intput != "" {
-		return true
-	}
-
-	if regexp == "" && intput == "" {
-		return true
-	}
-
 	return false
+}
 
+func check(r, i byte) bool {
+	return r == i || r == '.'
 }

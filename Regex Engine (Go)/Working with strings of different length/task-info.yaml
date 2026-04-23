@@ -4,7 +4,11 @@ files:
     visible: true
     learner_created: false
   - name: tests.py
+    visible: true
     learner_created: false
 feedback_link: https://hyperskill.org/projects/254/stages/1280/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Wed, 22 Apr 2026 14:53:14 UTC"
 record: -1
